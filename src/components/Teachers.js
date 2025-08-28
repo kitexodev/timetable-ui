@@ -24,8 +24,7 @@ import {
     DialogTitle
 } from '@mui/material';
 import { Edit as EditIcon, Delete as DeleteIcon } from '@mui/icons-material';
-
-const API_URL = 'https://timetable-backend-e1rc.onrender.com';
+import API_URL from '../apiConfig';
 
 // TabPanel component
 function TabPanel(props) {

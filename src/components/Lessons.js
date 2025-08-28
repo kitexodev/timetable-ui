@@ -1,8 +1,7 @@
 // src/components/Lessons.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
-const API_URL = 'https://timetable-backend-e1rc.onrender.com';
+import API_URL from '../apiConfig';
 
 function Lessons() {
     // State for the list of all lessons

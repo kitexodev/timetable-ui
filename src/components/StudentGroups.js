@@ -5,8 +5,7 @@ import axios from 'axios';
 import { Tabs, Tab, Box, TextField, Button, Typography, Paper, List, ListItem, ListItemText, IconButton, Stack } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-
-const API_URL = 'https://timetable-backend-e1rc.onrender.com';
+import API_URL from '../apiConfig';
 
 
 function StudentGroups() {
