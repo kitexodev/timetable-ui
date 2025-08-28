@@ -3,12 +3,21 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import API_URL from '../apiConfig';
 
+// --- MUI Imports ---
+import {
+    Box,
+    Typography,
+    Switch,
+    FormControlLabel,
+    Paper
+} from '@mui/material';
+
 function ConstraintsPage() {
     const [settings, setSettings] = useState({
-        // Set a default value in the initial state
         'enforceSimultaneousCLA': false,
     });
 
+    // --- (The useEffect and handleToggle functions remain exactly the same) ---
     useEffect(() => {
         const fetchSettings = async () => {
             try {
@@ -17,7 +26,6 @@ function ConstraintsPage() {
                     acc[setting.key] = setting.value;
                     return acc;
                 }, {});
-                // Merge fetched settings with defaults
                 setSettings(prevSettings => ({ ...prevSettings, ...settingsMap }));
             } catch (error) {
                 console.error("Error fetching settings:", error);
@@ -27,11 +35,9 @@ function ConstraintsPage() {
     }, []);
 
     const handleToggle = async (key) => {
-        const currentVal = settings[key] || false; // Use false if undefined
+        const currentVal = settings[key] || false;
         const newValue = !currentVal;
-
         try {
-            // This PUT request will now work correctly for both creating and updating
             await axios.put(`${API_URL}/settings/${key}/`, { key, value: newValue });
             setSettings(prevSettings => ({
                 ...prevSettings,
@@ -44,25 +50,34 @@ function ConstraintsPage() {
     };
 
     return (
-        <div>
-            <h2>Algorithm Constraints</h2>
-            <p>Control the preferences (soft constraints) for the timetable generation.</p>
+        // Use MUI's Box and Paper components for better layout and elevation
+        <Box component={Paper} sx={{ p: 3 }}>
+            <Typography variant="h5" gutterBottom>
+                Algorithm Constraints
+            </Typography>
+            <Typography variant="body1" color="textSecondary" paragraph>
+                Control the preferences (soft constraints) for the timetable generation.
+            </Typography>
             
-            <div>
-                <label>
-                    <input
-                        type="checkbox"
+            {/* Use FormControlLabel and Switch for a professional toggle */}
+            <FormControlLabel
+                control={
+                    <Switch
                         checked={settings['enforceSimultaneousCLA']}
                         onChange={() => handleToggle('enforceSimultaneousCLA')}
+                        name="enforceSimultaneousCLA"
+                        color="primary"
                     />
-                    Enforce Simultaneous CLA Periods for all classes
-                </label>
-                <p><small>Tries to schedule Creative Learning Activities at the same time across all grades.</small></p>
-            </div>
+                }
+                label="Enforce Simultaneous CLA Periods"
+            />
+            <Typography variant="body2" color="textSecondary" sx={{ ml: 4 }}>
+                When enabled, the algorithm will try to schedule Creative Learning Activities at the same time across all grades.
+            </Typography>
 
-            {/* You can add more soft constraints here in the future */}
+            {/* You can add more constraints here in the future using the same pattern */}
 
-        </div>
+        </Box>
     );
 }
 
