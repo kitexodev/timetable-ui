@@ -20,7 +20,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import SaveIcon from '@mui/icons-material/Save';
 import CancelIcon from '@mui/icons-material/Cancel';
 
-const API_URL = 'http://127.0.0.1:8000/api';
+const API_URL = 'https://timetable-backend-e1rc.onrender.com';
 
 // Custom TabPanel component
 function TabPanel(props) {

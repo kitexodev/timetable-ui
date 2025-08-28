@@ -6,7 +6,7 @@ import { Tabs, Tab, Box, TextField, Button, Typography, Paper, List, ListItem, L
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-const API_URL = 'http://127.0.0.1:8000/api';
+const API_URL = 'https://timetable-backend-e1rc.onrender.com';
 
 
 function StudentGroups() {

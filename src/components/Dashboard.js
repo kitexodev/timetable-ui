@@ -6,7 +6,7 @@ import axios from 'axios';
 import { DndContext } from '@dnd-kit/core';
 import TimetableGrid from './TimetableGrid';
 
-const API_URL = 'https://timetable-backend-e1rc.onrender.com/api';
+const API_URL = 'https://timetable-backend-e1rc.onrender.com';
 
 function Dashboard() {
     const [allSchedules, setAllSchedules] = useState([]);
